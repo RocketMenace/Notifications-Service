@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     )
 
     # Project metadata
-    project_name: str = Field(default="Jobsites Integration Platform")
+    project_name: str = Field(default="Notifications-Service")
     version: str = Field(default="0.1.0")
     debug: bool = Field(default=True)
 
