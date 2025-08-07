@@ -11,12 +11,12 @@ class BaseModel(database.Base):
     id: Mapped[UUID] = mapped_column(primary_key=True, default=uuid4, index=True)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
-        server_default=func.now,
+        server_default=func.now(),
         nullable=False,
     )
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
-        server_default=func.now,
+        server_default=func.now(),
         nullable=False,
-        onupdate=func.now,
+        onupdate=func.now(),
     )
