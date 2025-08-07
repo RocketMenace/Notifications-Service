@@ -22,9 +22,9 @@ class Settings(BaseSettings):
     postgres_port: str = Field(default="5432", alias="POSTGRES_PORT")
 
     # Database connection pool settings
-    db_pool_size: str = Field(default="5", alias="DB_POOL_SIZE")
-    db_max_overflow: str = Field(default="10", alias="DB_MAX_OVERFLOW")
-    db_pool_timeout: str = Field(default="30", alias="DB_POOL_TIMEOUT")
+    db_pool_size: int = Field(default=5, alias="DB_POOL_SIZE")
+    db_max_overflow: int = Field(default=10, alias="DB_MAX_OVERFLOW")
+    db_pool_timeout: int = Field(default=30, alias="DB_POOL_TIMEOUT")
     db_url: str = Field(default="", alias="DATABASE_URL")
 
     # Application settings
