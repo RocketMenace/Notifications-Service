@@ -7,7 +7,14 @@ from app.config.settings import settings
 
 class Database:
     def __init__(self):
-        self.engine = create_async_engine(settings.db_url, echo=True, future=True)
+        self.engine = create_async_engine(
+            settings.db_url,
+            echo=True,
+            future=True,
+            pool_size=settings.db_pool_size,
+            max_overflow=settings.db_max_overflow,
+            pool_timeout=settings.db_pool_timeout,
+        )
         self.Base = declarative_base()
 
     async def get_session(self) -> AsyncGenerator[AsyncSession, None]:
