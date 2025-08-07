@@ -1,7 +1,7 @@
 from fastapi import HTTPException, status
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import TypeVar, Type
+from typing import TypeVar, Type, Protocol
 from app.models.base import BaseModel
 from pydantic import BaseModel as Schema
 from sqlalchemy import insert
@@ -10,7 +10,11 @@ from sqlalchemy import insert
 ModelType = TypeVar("ModelType", bound=BaseModel)
 
 
-class BaseRepository:
+class BaseRepositoryProtocol(Protocol):
+    async def create(self, schema: Schema) -> Type[ModelType]: ...
+
+
+class BaseRepository(BaseRepositoryProtocol):
     def __init__(self, session: AsyncSession, model: Type[ModelType]):
         self.session = session
         self.model = model
